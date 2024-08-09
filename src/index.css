@@ -1,15 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(-35deg, #000428 0%, #004e92 100%);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   min-height: 100vh;
-  background: linear-gradient(-35deg, #000428 0%, #004e92);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.weather-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.weather-container h1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 2.8rem;
+  background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.weather-container p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+  font-size: 1.3rem;
+  color: #eeeeee;
+}
+
+.weather-container .temperature {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 5rem;
+  margin: 20px 0;
+  background: linear-gradient(45deg, #ffd452, #ffac45);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.weather-container .description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #dcdcdc;
+}
+
+.weather-container .details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+.weather-container .details div {
+  flex: 1;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  margin: 0 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.weather-container .details div:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+.weather-container .details div:first-child {
+  margin-left: 0;
+}
+
+.weather-container .details div:last-child {
+  margin-right: 0;
 }
 
 code {
