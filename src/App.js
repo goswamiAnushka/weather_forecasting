@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Container, Grid, Link, SvgIcon, Typography } from '@mui/material';
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  SvgIcon,
+  Typography,
+  CircularProgress,
+} from '@mui/material';
 import Search from './components/Search/Search';
 import WeeklyForecast from './components/WeeklyForecast/WeeklyForecast';
 import TodayWeather from './components/TodayWeather/TodayWeather';
 import { fetchWeatherData } from './api/OpenWeatherService';
 import { transformDateFormat } from './utilities/DatetimeUtils';
 import UTCDatetime from './components/Reusable/UTCDatetime';
-import LoadingBox from './components/Reusable/LoadingBox';
 import { ReactComponent as SplashIcon } from './assets/splash-icon.svg';
 import Logo from './assets/logo.png';
 import ErrorBox from './components/Reusable/ErrorBox';
@@ -62,35 +69,51 @@ function App() {
 
   let appContent = (
     <Box
-      xs={12}
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
       sx={{
         width: '100%',
-        minHeight: '500px',
+        minHeight: '400px',
+        background: 'linear-gradient(135deg, #1d2671 0%, #c33764 100%)',
+        borderRadius: '12px',
+        padding: '1.5rem',
+        boxShadow: '0px 15px 25px rgba(0, 0, 0, 0.2)',
+        animation: 'fadeIn 1.5s ease-in-out',
+        '@keyframes fadeIn': {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       }}
     >
       <SvgIcon
         component={SplashIcon}
         inheritViewBox
-        sx={{ fontSize: { xs: '100px', sm: '120px', md: '140px' } }}
+        sx={{
+          fontSize: { xs: '80px', sm: '100px', md: '120px' },
+          color: '#ffffff',
+          marginBottom: '1rem',
+        }}
       />
       <Typography
         variant="h4"
         component="h4"
         sx={{
-          fontSize: { xs: '12px', sm: '14px' },
-          color: 'rgba(255,255,255, .85)',
+          fontSize: { xs: '14px', sm: '18px', md: '22px' },
+          color: 'rgba(255, 255, 255, .95)',
           fontFamily: 'Poppins',
           textAlign: 'center',
-          margin: '2rem 0',
           maxWidth: '80%',
-          lineHeight: '22px',
+          lineHeight: '1.4',
+          animation: 'slideIn 2s ease-out',
+          '@keyframes slideIn': {
+            '0%': { transform: 'translateY(20px)', opacity: 0 },
+            '100%': { transform: 'translateY(0)', opacity: 1 },
+          },
         }}
       >
-        Explore current weather data and 6-day forecast of more than 200,000
+        Explore current weather data and a 6-day forecast of more than 200,000
         cities!
       </Typography>
     </Box>
@@ -98,16 +121,23 @@ function App() {
 
   if (todayWeather && todayForecast && weekForecast) {
     appContent = (
-      <React.Fragment>
-        <Grid item xs={12} md={todayWeather ? 6 : 12}>
-          <Grid item xs={12}>
-            <TodayWeather data={todayWeather} forecastList={todayForecast} />
-          </Grid>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          width: '100%',
+          margin: 0,
+          overflow: 'hidden',
+          height: 'calc(100vh - 150px)', // Adjust the height to fit within the viewport
+        }}
+      >
+        <Grid item xs={12} md={6} sx={{ overflowY: 'auto' }}>
+          <TodayWeather data={todayWeather} forecastList={todayForecast} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} sx={{ overflowY: 'auto' }}>
           <WeeklyForecast data={weekForecast} />
         </Grid>
-      </React.Fragment>
+      </Grid>
     );
   }
 
@@ -129,23 +159,32 @@ function App() {
           justifyContent: 'center',
           alignItems: 'center',
           width: '100%',
-          minHeight: '500px',
+          minHeight: '400px',
         }}
       >
-        <LoadingBox value="1">
-          <Typography
-            variant="h3"
-            component="h3"
-            sx={{
-              fontSize: { xs: '10px', sm: '12px' },
-              color: 'rgba(255, 255, 255, .8)',
-              lineHeight: 1,
-              fontFamily: 'Poppins',
-            }}
-          >
-            Loading...
-          </Typography>
-        </LoadingBox>
+        <CircularProgress
+          sx={{
+            color: '#1d2671',
+            animation: 'spin 1s linear infinite',
+            '@keyframes spin': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+          }}
+        />
+        <Typography
+          variant="h3"
+          component="h3"
+          sx={{
+            fontSize: { xs: '14px', sm: '18px' },
+            color: 'rgba(255, 255, 255, .9)',
+            lineHeight: 1.5,
+            fontFamily: 'Poppins',
+            marginLeft: '1rem',
+          }}
+        >
+          Loading...
+        </Typography>
       </Box>
     );
   }
@@ -153,23 +192,21 @@ function App() {
   return (
     <Container
       sx={{
-        maxWidth: { xs: '95%', sm: '80%', md: '1100px' },
+        maxWidth: { xs: '95%', sm: '85%', md: '1000px' },
         width: '100%',
-        height: '100%',
         margin: '0 auto',
-        padding: '1rem 0 3rem',
-        marginBottom: '1rem',
-        borderRadius: {
-          xs: 'none',
-          sm: '0 0 1rem 1rem',
-        },
-        boxShadow: {
-          xs: 'none',
-          sm: 'rgba(0,0,0, 0.5) 0px 10px 15px -3px, rgba(0,0,0, 0.5) 0px 4px 6px -2px',
+        padding: '1.5rem',
+        background: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
+        borderRadius: '16px',
+        boxShadow: '0px 20px 30px rgba(0, 0, 0, 0.25)',
+        animation: 'fadeSlide 2s ease-out',
+        '@keyframes fadeSlide': {
+          '0%': { opacity: 0, transform: 'translateY(50px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       }}
     >
-      <Grid container columnSpacing={2}>
+      <Grid container>
         <Grid item xs={12}>
           <Box
             display="flex"
@@ -177,14 +214,23 @@ function App() {
             alignItems="center"
             sx={{
               width: '100%',
-              marginBottom: '1rem',
+              marginBottom: '1.5rem',
+              animation: 'popUp 1.5s ease-out',
+              '@keyframes popUp': {
+                '0%': { opacity: 0, transform: 'scale(0.8)' },
+                '100%': { opacity: 1, transform: 'scale(1)' },
+              },
             }}
           >
             <Box
               component="img"
               sx={{
-                height: { xs: '16px', sm: '22px', md: '26px' },
+                height: { xs: '28px', sm: '38px', md: '48px' },
                 width: 'auto',
+                transition: 'transform 0.3s',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                },
               }}
               alt="logo"
               src={Logo}
@@ -192,16 +238,17 @@ function App() {
 
             <UTCDatetime />
             <Link
-              href="https://github.com/Amin-Awinti"
+              href="https://github.com/goswamiAnushka"
               target="_blank"
               underline="none"
               sx={{ display: 'flex' }}
             >
               <GitHubIcon
                 sx={{
-                  fontSize: { xs: '20px', sm: '22px', md: '26px' },
+                  fontSize: { xs: '24px', sm: '28px', md: '32px' },
                   color: 'white',
-                  '&:hover': { color: '#2d95bd' },
+                  '&:hover': { color: '#ff9800' },
+                  transition: 'color 0.3s',
                 }}
               />
             </Link>
