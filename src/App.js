@@ -249,7 +249,7 @@ function App() {
             >
               <GitHubIcon
                 sx={{
-                  fontSize: { xs: '24px', sm: '28px', md: '32px' },
+                  fontSize: { xs: '23px', sm: '27px', md: '31px' },
                   color: 'white',
                   '&:hover': { color: '#ff9800' },
                   transition: 'color 0.3s',
