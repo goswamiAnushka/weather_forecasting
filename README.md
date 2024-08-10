@@ -8,7 +8,7 @@ Welcome to the Weather Forecasting App, a responsive and stylish web application
 
 ### Live Demo
 
-Check out the live version of the app: [Weather Forecasting App](https://tictactoewonderla.netlify.app)
+Check out the live version of the app: [Weather Forecasting App](https://sunnyfrost.netlify.app/)
 
 ## Features
 
