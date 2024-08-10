@@ -85,6 +85,8 @@ function App() {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
+        overflowY: 'auto',
+        maxHeight: 'calc(100vh - 150px)',
       }}
     >
       <SvgIcon
@@ -128,13 +130,13 @@ function App() {
           width: '100%',
           margin: 0,
           overflow: 'hidden',
-          height: 'calc(100vh - 150px)', // Adjust the height to fit within the viewport
+          maxHeight: 'calc(100vh - 150px)', // Adjust the height to fit within the viewport
         }}
       >
-        <Grid item xs={12} md={6} sx={{ overflowY: 'auto' }}>
+        <Grid item xs={12} md={6} sx={{ overflowY: 'auto', maxHeight: '100%' }}>
           <TodayWeather data={todayWeather} forecastList={todayForecast} />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ overflowY: 'auto' }}>
+        <Grid item xs={12} md={6} sx={{ overflowY: 'auto', maxHeight: '100%' }}>
           <WeeklyForecast data={weekForecast} />
         </Grid>
       </Grid>
@@ -204,6 +206,8 @@ function App() {
           '0%': { opacity: 0, transform: 'translateY(50px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
+        overflowY: 'auto', // Allow vertical scrolling if content overflows
+        maxHeight: '100vh', // Ensure the container doesn't exceed the viewport height
       }}
     >
       <Grid container>

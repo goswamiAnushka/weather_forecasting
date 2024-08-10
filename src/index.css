@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400;700&display=swap');
-
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif !important;
@@ -75,7 +74,6 @@ body {
 
 .weather-container .details {
   display: flex;
-  flex-direction: column; /* Stacking for small screens */
   justify-content: space-between;
   margin-top: 30px;
   font-size: 1.2rem;
@@ -86,7 +84,7 @@ body {
   padding: 15px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 15px;
-  margin: 10px 0; /* Adjust margin for small screens */
+  margin: 0 10px;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   color: #ffffff;
@@ -98,42 +96,15 @@ body {
   transform: translateY(-5px);
 }
 
-@media (min-width: 600px) {
-  .weather-container {
-    max-width: 80%;
-    padding: 30px;
-  }
-
-  .weather-container .details {
-    flex-direction: row; /* Revert to row for larger screens */
-  }
-
-  .weather-container h1 {
-    font-size: 3.5rem;
-  }
-
-  .weather-container p,
-  .weather-container .description {
-    font-size: 1.5rem;
-  }
+.weather-container .details div:first-child {
+  margin-left: 0;
 }
 
-@media (min-width: 900px) {
-  .weather-container {
-    max-width: 60%;
-  }
-
-  .weather-container h1 {
-    font-size: 4rem;
-  }
-
-  .weather-container .temperature {
-    font-size: 6rem;
-  }
+.weather-container .details div:last-child {
+  margin-right: 0;
 }
 
-@media (max-height: 700px) {
-  body {
-    overflow-y: auto;
-  }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
